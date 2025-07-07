@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PatiboxAI Veteriner Asistanı</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #9c5fff;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: #8445ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(156, 95, 255, 0.3);
+        }
+
+        .button.analysis {
+            background: #00A3FF;
+        }
+
+        .button.analysis:hover {
+            background: #0088D1;
+            box-shadow: 0 5px 15px rgba(0, 163, 255, 0.3);
+        }
+
+        .button i {
+            font-size: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <img src="/static/patibox-assistant.png" alt="PatiboxAI Assistant" class="logo">
+        <h1>PatiboxAI Veteriner Asistanın</h1>
+        <p>Evcil dostun için anında, güvenilir ve kişiselleştirilmiş veterinerlik desteği. Her an yanında, her sorununa yanıt hazır.</p>
+        <div class="buttons-container">
+            <a href="/chat" class="button">
+                <i class="fas fa-comments"></i>
+                Sohbet Et
+            </a>
+            <a href="/analysis" class="button analysis">
+                <i class="fas fa-search"></i>
+                Ürün Analizi
+            </a>
+        </div>
+    </div>
+</body>
+</html> 
