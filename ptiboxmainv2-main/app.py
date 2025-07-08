@@ -76,11 +76,17 @@ if 'GOOGLE_CREDENTIALS_JSON' in os.environ:
         credentials_data = json.loads(credentials_json)
         print("Credentials parsed successfully")
         
-        # Vertex AI'yi direkt credentials ile başlat
+        # Google Cloud kimlik bilgileri nesnesi oluştur
+        from google.oauth2 import service_account
+        
+        credentials = service_account.Credentials.from_service_account_info(credentials_data)
+        print("Service account credentials created")
+        
+        # Vertex AI'yi credentials ile başlat
         vertexai.init(
             project=credentials_data.get('project_id', 'the-other-459900-e8'),
             location='us-central1',
-            credentials=credentials_data
+            credentials=credentials
         )
         print("Vertex AI initialized with credentials")
     except Exception as e:
