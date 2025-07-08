@@ -66,14 +66,25 @@ safety_settings = [
 print("Environment variables:", list(os.environ.keys()))
 print("GOOGLE_CREDENTIALS_JSON exists:", 'GOOGLE_CREDENTIALS_JSON' in os.environ)
 
-# Secret'ı dosya olarak yaz
+# Secret'ı environment variable olarak kullan
 if 'GOOGLE_CREDENTIALS_JSON' in os.environ:
     credentials_json = os.environ['GOOGLE_CREDENTIALS_JSON']
     print("Credentials JSON length:", len(credentials_json))
-    with open('/tmp/google-credentials.json', 'w') as f:
-        f.write(credentials_json)
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/google-credentials.json"
-    print("Credentials file created at:", "/tmp/google-credentials.json")
+    
+    # JSON'u parse et ve service account bilgilerini al
+    try:
+        credentials_data = json.loads(credentials_json)
+        print("Credentials parsed successfully")
+        
+        # Vertex AI'yi direkt credentials ile başlat
+        vertexai.init(
+            project=credentials_data.get('project_id', 'the-other-459900-e8'),
+            location='us-central1',
+            credentials=credentials_data
+        )
+        print("Vertex AI initialized with credentials")
+    except Exception as e:
+        print("Error parsing credentials:", str(e))
 else:
     print("GOOGLE_CREDENTIALS_JSON not found in environment variables")
 
@@ -204,7 +215,6 @@ def multiturn_generate_content(session_id, user_message):
         Modelin ürettiği metin yanıtı veya bir hata mesajı.
     """
     try:
-        vertexai.init(project="the-other-459900-e8", location="us-central1")
         model = GenerativeModel(
             "gemini-2.0-flash-001",
             system_instruction=textsi_1
