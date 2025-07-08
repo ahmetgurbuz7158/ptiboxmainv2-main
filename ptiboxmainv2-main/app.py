@@ -8,6 +8,7 @@ import logging
 import sys
 import vertexai
 from vertexai.generative_models import GenerativeModel, SafetySetting
+import json
 
 
 
@@ -61,6 +62,12 @@ safety_settings = [
     ),
 ]
 
+# Secret'ı dosya olarak yaz
+if 'GOOGLE_CREDENTIALS_JSON' in os.environ:
+    credentials_json = os.environ['GOOGLE_CREDENTIALS_JSON']
+    with open('/tmp/google-credentials.json', 'w') as f:
+        f.write(credentials_json)
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/google-credentials.json"
 
 # Sistem açıklaması
 textsi_1 = """Senin Rolün:
