@@ -62,12 +62,20 @@ safety_settings = [
     ),
 ]
 
+# Debug: Environment variable'ları kontrol et
+print("Environment variables:", list(os.environ.keys()))
+print("GOOGLE_CREDENTIALS_JSON exists:", 'GOOGLE_CREDENTIALS_JSON' in os.environ)
+
 # Secret'ı dosya olarak yaz
 if 'GOOGLE_CREDENTIALS_JSON' in os.environ:
     credentials_json = os.environ['GOOGLE_CREDENTIALS_JSON']
+    print("Credentials JSON length:", len(credentials_json))
     with open('/tmp/google-credentials.json', 'w') as f:
         f.write(credentials_json)
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/google-credentials.json"
+    print("Credentials file created at:", "/tmp/google-credentials.json")
+else:
+    print("GOOGLE_CREDENTIALS_JSON not found in environment variables")
 
 # Sistem açıklaması
 textsi_1 = """Senin Rolün:
